@@ -19,8 +19,8 @@ def create_bongos():
     print('Hallo')
 
     win2 = Toplevel()
-    win2.attributes('-fullscreen', True)
-   # win2.geometry('1700x800')
+   # win2.attributes('-fullscreen', True)
+    win2.geometry('1700x800')
 
     bongos_high = Canvas(win2)
     bongos_high.place(relx=0.25, rely=0.5, relwidth=0.49, relheight=0.9, anchor=CENTER)
@@ -76,7 +76,7 @@ def create_bongos():
 
             a = z1
             delta = b - a
-            print(delta)
+            print(z2)
 
             if 900 > x1 > 5:
                 bongos_low.itemconfig(bg_low, fill='red')

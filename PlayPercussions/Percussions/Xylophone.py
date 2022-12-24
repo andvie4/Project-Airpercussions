@@ -6,7 +6,8 @@ import customtkinter
 import pygame
 from PlayPercussions.Sounds.SoundList import soundlist_xylo, soundlist_xylo_accidental
 
-from depthai_hand_tracker.demo import coord
+from depthai_hand_tracker.demo import coord, close_depth_camera
+from depthai_hand_tracker.mouse import handmouse
 
 note_name = ['f', 'g', 'a', 'h', 'c1', 'd1', 'e1', 'f1', 'g1', 'a1', 'h1', 'c2', 'd2', 'e2', 'f2', 'g2', 'a2', 'h2',
              'c3', 'd3', 'e3', 'f3']
@@ -100,6 +101,9 @@ def play_xylo(win, xylophone, rectangles1, rectangles2):
         if stop_thread_xylo:
             print('thread gestoppt')
             stop_thread_xylo = False
+            close_depth_camera(1)
+            thread = threading.Thread(target=handmouse)
+            thread.start()
             win.withdraw()
             break
 

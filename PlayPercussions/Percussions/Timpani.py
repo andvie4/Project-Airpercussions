@@ -5,7 +5,8 @@ from tkinter import *
 import customtkinter
 import pygame
 from PlayPercussions.Sounds.SoundList import soundlist_timpani
-from depthai_hand_tracker.demo import coord
+from depthai_hand_tracker.demo import coord, close_depth_camera
+from depthai_hand_tracker.mouse import handmouse
 
 stop_thread_timpani = False
 debounce = True
@@ -60,6 +61,9 @@ def create_timpani():
             if stop_thread_timpani:
                 print('thread gestoppt')
                 stop_thread_timpani = False
+                close_depth_camera(1)
+                thread = threading.Thread(target=handmouse)
+                thread.start()
                 win4.withdraw()
                 break
             x1 = coord[0]

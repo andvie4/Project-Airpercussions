@@ -5,7 +5,8 @@ from tkinter import *
 import customtkinter
 import pygame
 from PlayPercussions.Sounds.SoundList import soundlist_timbales
-from depthai_hand_tracker.demo import coord
+from depthai_hand_tracker.demo import coord, close_depth_camera
+from depthai_hand_tracker.mouse import handmouse
 
 stop_thread = False
 
@@ -110,6 +111,9 @@ def create_timbales():
             if stop_thread:
                 print('thread gestoppt')
                 stop_thread = False
+                close_depth_camera(1)
+                thread = threading.Thread(target=handmouse)
+                thread.start()
                 win1.withdraw()
                 break
             x1 = coord[0]

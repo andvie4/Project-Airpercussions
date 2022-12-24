@@ -37,7 +37,7 @@ def selectwindow():
                                           command=play)
     button_next.place(relx=0.92, rely=0.85, relwidth=0.13, relheight=0.06, anchor=CENTER)
     button_close = customtkinter.CTkButton(master=win, text='Close', fg_color='#cf5148', hover_color="red",
-                                           command=win.destroy)
+                                           command=win.withdraw)
     button_close.place(relx=0.92, rely=0.95, relwidth=0.13, relheight=0.06, anchor=CENTER)
     x = 0.05
     y = 0.1
@@ -118,6 +118,7 @@ def play():
 def open_dcamera():
     thread_open_dcamera = threading.Thread(target=open_depht_camera)
     thread_open_dcamera.start()
+
 
 
 

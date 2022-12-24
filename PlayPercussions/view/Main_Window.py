@@ -63,7 +63,6 @@ def gui():
 
 def shut_down(root):
     closemouse(1)
-    backgroundmusic('stop', 0)
     root.quit()
 
 
@@ -98,75 +97,3 @@ def open_help():
 
 def open_about():
     print()
-
-def set_cursor():
-            x1 = coord[0]
-            y1 = coord[1]
-            z1 = coord[2]
-            dist = coord[6]
-            print(x1, y1)
-            if x1 >0:
-
-             if x1>300:
-                if y1 < 450:
-                    if 300 < x1 < 600:
-                        pyautogui.moveTo(1500, 800)
-                        if dist < 1:
-                            print('klick')
-                            #mouse.press(Button.left)
-                            #mouse.release(Button.left)
-                    if 600 < x1 < 900:
-                        pyautogui.moveTo(1000, 800)
-                    if 900 < x1 < 1200:
-                        pyautogui.moveTo(500, 800)
-                if y1 > 450:
-                    if 300 < x1 < 600:
-                        pyautogui.moveTo(1500, 400)
-                    if 600 < x1 < 900:
-                        pyautogui.moveTo(1000, 400)
-                    if 900 < x1 < 1200:
-                        pyautogui.moveTo(500, 400)
-
- # def ausgabe():
-  #      x1 = coord[0]
-   #     y1 = coord[1]
-    #    z1 = coord[2]
-     #   dist = coord[6]
-
-
-
-     #   if y1 == 0:
-      #      canvas.itemconfig(rectangle, fill='red')
-
-       # if y1 > 0:
-        #    canvas.itemconfig(rectangle, fill='green')
-         #   if x1 > 300:
-          #      canvas.itemconfig(rectangle, fill='red')
-
-           # if x1<300:
-            #    if y1 < 200:
-             #       canvas.moveto(rectangle, 1, 540)
-              #      pyautogui.moveTo(1800, 900)
-               #     if dist < 1:
-                #        print('klick')
-               # elif 200 < y1 < 400:
-                #    canvas.moveto(rectangle, 1, 330)
-                 #   pyautogui.moveTo(1800, 700)
-             #   elif 400 < y1 < 600:
-              #      canvas.moveto(rectangle, 1, 230)
-               #     pyautogui.moveTo(1800, 600)
-               # else:
-                #    canvas.moveto(rectangle, 1, 130)
-                 #   pyautogui.moveTo(1800, 500)
-                  #  if dist < 1:
-                        # next_window()
-                       # mouse.press(Button.left)
-                       # mouse.release(Button.left)
-                   #     print('klick')
-
-
-
-
-       # root.after(1, ausgabe)
-
-   # root.after(1, ausgabe)

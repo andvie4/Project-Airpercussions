@@ -7,7 +7,8 @@ import math
 
 import pygame
 from PlayPercussions.Sounds.SoundList import soundlist_steeldrum
-from depthai_hand_tracker.demo import coord
+from depthai_hand_tracker.demo import coord, close_depth_camera
+from depthai_hand_tracker.mouse import handmouse
 from screeninfo import get_monitors
 
 note_name = ['A', 'E', 'H', 'F#/Ges', 'C#/Des', 'G#/As', 'D#/Es', 'B', 'F', 'C', 'G', 'D']
@@ -116,6 +117,9 @@ def create_steeldrum():
             if stop_thread_steeldrum:
                 print('thread gestoppt')
                 stop_thread_steeldrum = False
+                close_depth_camera(1)
+                thread = threading.Thread(target=handmouse)
+                thread.start()
                 win0.withdraw()
                 break
             x1 = coord[0]

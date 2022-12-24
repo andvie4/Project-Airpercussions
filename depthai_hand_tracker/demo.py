@@ -105,8 +105,8 @@ def coordinates(hands):
         coord[6] = daumen - zeigefinger
         # coord[2]=z5
         if len(hands) > 1:
-            z2 = hands[1].norm_landmarks[5][2]
-            coord[5] = z2
+            z2 = hands[1].xyz[2]
+            coord[5] = z2/10
             x1 = hands[0].xyz[0]
             y1 = hands[0].xyz[1]
             x2 = hands[1].xyz[0]
