@@ -1,8 +1,12 @@
 import threading
+import time
 import tkinter
 from tkinter import *
 import customtkinter
 import math
+
+import pygame
+from PlayPercussions.Sounds.SoundList import soundlist_steeldrum
 from depthai_hand_tracker.demo import coord
 from screeninfo import get_monitors
 
@@ -31,7 +35,7 @@ def create_steeldrum():
 
     win0 = Toplevel()
     win0.attributes('-fullscreen', True)
-    #win0.geometry('1500x800')
+    # win0.geometry('1500x800')
 
     for monitor in get_monitors():
         width = monitor.width
@@ -97,9 +101,16 @@ def create_steeldrum():
                                            command=back)
     button_close.place(relx=0.92, rely=0.95, relwidth=0.13, relheight=0.06, anchor=CENTER)
 
+    pygame.init()
+
+    def playback_steeldrum(channel, index):
+        pygame.mixer.Channel(channel).play(pygame.mixer.Sound(soundlist_steeldrum[index]))
+
     def play_steeldrum():
         debounce = True
         global stop_thread_steeldrum, width, height
+        end = 0
+        channel = 1
 
         while True:  # if the close button is pressed, the back function is called and set  stop_thread to True
             if stop_thread_steeldrum:
@@ -113,7 +124,8 @@ def create_steeldrum():
             x2 = coord[3]
             y2 = coord[4]
             z2 = coord[5]
-            print(x1, y1, z1)
+            start = z1
+            delta = end - start
 
             idx = check_index(x1)
             if idx is not None:
@@ -123,10 +135,19 @@ def create_steeldrum():
                 for y in range(12):
                     if idx == y:
                         steeldrum.itemconfig(polygon_index[y], fill='red')
+                        if delta > 4 and not debounce:
+                            playback_steeldrum(channel, idx)
+                            channel += 1
+                            debounce = True
                     else:
                         steeldrum.itemconfig(polygon_index[y], fill='grey')
+            if channel == 8:
+                channel = 1
 
-            #   steeldrum.itemconfig(polygon_index[a], fill='red')
+            if delta < 0:
+                debounce = False
+            time.sleep(0.01)
+            end = z1
 
     thread_steeldrum = threading.Thread(target=play_steeldrum)
     thread_steeldrum.start()

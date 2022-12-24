@@ -46,3 +46,16 @@ soundlist_timpani = ['../PlayPercussions/Sounds/Timpani/C#_Timpani.wav',
 soundlist_timbales = ['../PlayPercussions/Sounds/Timbales/HighTimbales.wav',
                       '../PlayPercussions/Sounds/Timbales/LowTimbales.wav',
                       '../PlayPercussions/Sounds/Timbales/Cowbell.wav']
+
+soundlist_steeldrum = ['../PlayPercussions/Sounds/Steeldrum/SteeldrumA4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumE4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumB4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumF#4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumC#4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumG#4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumD#4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumA#4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumF4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumC4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumG4.wav',
+                       '../PlayPercussions/Sounds/Steeldrum/SteeldrumD4.wav']
