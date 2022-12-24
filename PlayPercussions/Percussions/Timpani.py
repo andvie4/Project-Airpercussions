@@ -13,8 +13,8 @@ debounce = True
 
 def create_timpani():
     win4 = Toplevel()
-    #win4.attributes('-fullscreen', True)
-    win4.geometry('1000x700')
+    win4.attributes('-fullscreen', True)
+    #win4.geometry('1000x700')
 
     timpani_low = Canvas(win4)
     timpani_low.place(relx=0.25, rely=0.5, relwidth=0.49, relheight=0.9, anchor=CENTER)

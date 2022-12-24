@@ -28,8 +28,8 @@ pygame.mixer.set_num_channels(30)
 
 def create_xylophone():
     win3 = Toplevel()
-    # win3.attributes('-fullscreen', True)
-    win3.geometry('1500x700')
+    win3.attributes('-fullscreen', True)
+    #win3.geometry('1500x700')
 
     x1 = 40
     y1 = 1045
@@ -83,17 +83,18 @@ def create_xylophone():
     win3.mainloop()
 
 
-def playback_xylophon(index):
-    pygame.mixer.Channel(index).play(pygame.mixer.Sound(soundlist_xylo[index]))
+def playback_xylophon(channel,index):
+    pygame.mixer.Channel(channel).play(pygame.mixer.Sound(soundlist_xylo[index]))
 
 
-def playback_accidental_notes(index):
-    pygame.mixer.Channel(index).play(pygame.mixer.Sound(soundlist_xylo_accidental[index]))
+def playback_accidental_notes(channel,index):
+    pygame.mixer.Channel(channel).play(pygame.mixer.Sound(soundlist_xylo_accidental[index]))
 
 
 def play_xylo(win, xylophone, rectangles1, rectangles2):
     debounce = False
     config = False
+    channel =1
     while True:
         global stop_thread_xylo, a, b
         if stop_thread_xylo:
@@ -124,7 +125,8 @@ def play_xylo(win, xylophone, rectangles1, rectangles2):
                 if idx == number:
                     xylophone.itemconfig(rectangles1[number], fill='red')
                     if delta > 4 and not debounce:
-                        playback_xylophon(idx)
+                        playback_xylophon(channel,idx)
+                        channel+=1
                         debounce = True
                     config = True
                 else:
@@ -142,11 +144,14 @@ def play_xylo(win, xylophone, rectangles1, rectangles2):
                 if idx2 == number:
                     xylophone.itemconfig(rectangles2[number], fill='red')
                     if delta > 4 and not debounce:
-                        playback_accidental_notes(idx2)
+                        playback_accidental_notes(channel,idx2)
+                        channel+=1
                         debounce = True
                     config = True
                 else:
                     xylophone.itemconfig(rectangles2[number], fill='#754C14')
+        if channel==8:
+            channel =1
         if delta < 0:
             debounce = False
         time.sleep(0.01)
