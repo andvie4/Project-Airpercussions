@@ -1,5 +1,4 @@
 import threading
-import time
 from tkinter import *
 import customtkinter
 from PIL import Image, ImageTk
@@ -25,7 +24,7 @@ mouse = Controller()
 
 def selectwindow():
     win = Toplevel()
-   # win.attributes('-fullscreen', True, )
+    # win.attributes('-fullscreen', True, )
     win.geometry('1500x500')
     win.config(bg="white")
     screen_width = win.winfo_screenwidth()
@@ -120,12 +119,11 @@ def open_dcamera():
     thread_open_dcamera.start()
 
 
-
-
 def reopen():
     while True:
         print('Hallo')
 
+
 def change(x):
-    if x==0:
+    if x == 0:
         print('Hallo')

@@ -4,7 +4,6 @@ import tkinter
 from tkinter import *
 import customtkinter
 import math
-
 import pygame
 from PlayPercussions.Sounds.SoundList import soundlist_steeldrum
 from depthai_hand_tracker.demo import coord, close_depth_camera

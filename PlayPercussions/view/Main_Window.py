@@ -1,28 +1,18 @@
-import threading
-import time
 from tkinter import *
 from PIL import Image, ImageTk
 import tkinter.font as tkFont
-
 from PlayPercussions.view.SelectWindow import selectwindow
 from depthai_hand_tracker.HandController import closemouse
-from depthai_hand_tracker.demo import coord
-
 from pygame import mixer
-
 from PlayPercussions.Button import create_button
-import pyautogui
 import winsound
-from pynput.mouse import Button, Controller
-
-
 
 
 def gui():
     backgroundmusic('play', 1)
     root = Tk()
     # set window size
-   # root.attributes('-fullscreen', True, )
+    # root.attributes('-fullscreen', True, )
     root.geometry("1500x500")
     screen_width = root.winfo_screenwidth()  # winfo.screenwdth returns not always the real width
     screen_height = root.winfo_screenheight()
@@ -41,9 +31,9 @@ def gui():
     headline.config(font=headfont)
 
     # create 'mouse'
-  #  canvas = Canvas(root, width=370, height=700, bg='#fbfafb')
-   # canvas.pack(anchor='se', side=BOTTOM)
-   # rectangle = canvas.create_rectangle(10, 10, 30, 30, fill='red')
+    #  canvas = Canvas(root, width=370, height=700, bg='#fbfafb')
+    # canvas.pack(anchor='se', side=BOTTOM)
+    # rectangle = canvas.create_rectangle(10, 10, 30, 30, fill='red')
     # set buttons
 
     button_play = create_button(root, next_window, "Play")
