@@ -8,26 +8,27 @@ stopthread = False
 
 
 class Soundevent:
-    def __init__(self, name,win, soundlist, canvas1, canvas2,canvas3, oval1, oval2):
+    def __init__(self, name, win, soundlist, canvas1, canvas2, shape1, shape2, shape3):
 
         self.name = name
         self.win = win
         self.soundlist = soundlist
         self.canvas1 = canvas1
         self.canvas2 = canvas2
-        self.canvas3= canvas3
-        self.oval1 = oval1
-        self.oval2 = oval2
+        self.shape1 = shape1
+        self.shape2 = shape2
+        self.shape3 = shape3
+        if name == 'Timbales':
+            self.canvas2 = self.canvas1
 
-        if name == 'Bongos' or name == 'Timpani':
-            self.soundbongo()
+        self.process_coord()
 
     pygame.init()
 
-    def playback_bongo(self, channel, index):
+    def playback_percussion(self, channel, index):
         pygame.mixer.Channel(channel).play(pygame.mixer.Sound(self.soundlist[index]))
 
-    def soundbongo(self):
+    def process_coord(self):
 
         b = 0
         debounce = True
@@ -50,29 +51,44 @@ class Soundevent:
             z2 = coord[5]
 
             a = z1
-
             delta = b - a
+            end = 900
+            if self.name == 'Timbales':
+                end = 500
 
-            if 900 > x1 > 5:
-                self.canvas1.itemconfig(self.oval1, fill='red')
+            if 900 > x1 > 5 and y1 < end:
+
+                self.canvas1.itemconfig(self.shape2, fill='red')
                 if delta > 4 and not debounce:
-                    self.playback_bongo(channel, 0)
+                    self.playback_percussion(channel, 0)
                     channel += 1
                     if channel == 8:
                         channel = 1
                     debounce = True
             else:
-                self.canvas1.itemconfig(self.oval1, fill='#e0cdbc')
-            if x1 > 900:
-                self.canvas2.itemconfig(self.oval2, fill='red')
+                self.canvas1.itemconfig(self.shape2, fill='#e0cdbc')
+            if x1 > 900 and y1 <end:
+                self.canvas2.itemconfig(self.shape1, fill='red')
                 if delta > 3 and not debounce:
-                    self.playback_bongo(channel, 1)
+                    self.playback_percussion(channel, 1)
                     channel += 1
                     if channel == 8:
                         channel = 1
                     debounce = True
             else:
-                self.canvas2.itemconfig(self.oval2, fill='#d9d4d0')
+                self.canvas2.itemconfig(self.shape1, fill='#d9d4d0')
+
+            if self.name == 'Timbales':
+                if y1 > end:
+                    self.canvas1.itemconfig(self.shape3, fill='red')
+                    if delta > 3 and not debounce:
+                        self.playback_percussion(channel, 2)
+                        channel += 1
+                        if channel == 8:
+                            channel = 1
+                        debounce = True
+                else:
+                    self.canvas1.itemconfig(self.shape3, fill='#d9d4d0')
 
             if delta < 0:
                 debounce = False
@@ -81,10 +97,6 @@ class Soundevent:
             b = z1
 
             time.sleep(0.01)
-
-
-
-
 
 
 def stop_thread(stop):

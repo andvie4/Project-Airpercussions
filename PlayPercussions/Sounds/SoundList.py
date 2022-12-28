@@ -37,8 +37,8 @@ soundlist_xylo_accidental = ['../PlayPercussions/Sounds/Xylophon/Xylophon f#0.wa
                              '../PlayPercussions/Sounds/Xylophon/Xylophon c#3.wav',
                              '../PlayPercussions/Sounds/Xylophon/Xylophon d#3.wav']
 
-soundlist_bongos = ['../PlayPercussions/Sounds/Bongos/Bongo_high.wav',
-                    '../PlayPercussions/Sounds/Bongos/Bongo_low.wav']
+soundlist_bongos = ['../PlayPercussions/Sounds/Bongos/Bongo_low.wav',
+                    '../PlayPercussions/Sounds/Bongos/Bongo_high.wav']
 
 soundlist_timpani = ['../PlayPercussions/Sounds/Timpani/C#_Timpani.wav',
                      '../PlayPercussions/Sounds/Timpani/G#_Timpani.wav']

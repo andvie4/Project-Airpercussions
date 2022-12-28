@@ -4,13 +4,11 @@ import customtkinter
 from PlayPercussions.Control.SoundControl import Soundevent, stop_thread
 from PlayPercussions.Sounds.SoundList import soundlist_bongos
 
-stop_thread_bongo = False
-a = 0
-b = 0
+
 
 
 def create_bongos():
-    print('Hallo')
+
 
     win2 = Toplevel()
     # win2.attributes('-fullscreen', True)
@@ -38,8 +36,8 @@ def create_bongos():
                                            command=back)
     button_close.place(relx=0.92, rely=0.95, relwidth=0.13, relheight=0.06, anchor=CENTER)
 
-    thread_bongo = threading.Thread(target=Soundevent, args=('Bongos', win2, soundlist_bongos, bongos_high, bongos_low,
-                                                             None, bg_low, bg_high))
+    thread_bongo = threading.Thread(target=Soundevent, args=('Bongos', win2, soundlist_bongos, bongos_low, bongos_high,
+                                                              bg_low, bg_high,None))
     thread_bongo.start()
 
     win2.mainloop()

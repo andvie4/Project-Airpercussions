@@ -6,14 +6,13 @@ from PlayPercussions.Control.SoundControl import Soundevent, stop_thread
 from PlayPercussions.Sounds.SoundList import soundlist_timpani
 
 
-stop_thread_timpani = False
-debounce = True
+
 
 
 def create_timpani():
     win4 = Toplevel()
-    # win4.attributes('-fullscreen', True)
-    win4.geometry('1000x700')
+    win4.attributes('-fullscreen', True)
+   # win4.geometry('1000x700')
 
     timpani_low = Canvas(win4)
     timpani_low.place(relx=0.25, rely=0.5, relwidth=0.49, relheight=0.9, anchor=CENTER)
@@ -45,7 +44,7 @@ def create_timpani():
     button_close.place(relx=0.92, rely=0.95, relwidth=0.13, relheight=0.06, anchor=CENTER)
 
     thread_playtimpani = threading.Thread(target=Soundevent, args=('Timpani', win4, soundlist_timpani, timpani_high,
-                                                                   timpani_low, None, highttimp, lowtimp))
+                                                                   timpani_low, highttimp, lowtimp,None))
     thread_playtimpani.start()
 
     win4.mainloop()

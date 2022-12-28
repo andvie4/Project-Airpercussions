@@ -1,26 +1,15 @@
 import threading
-import time
 import tkinter
 from tkinter import *
 import customtkinter
-import pygame
+from PlayPercussions.Control.SoundControl import Soundevent, stop_thread
 from PlayPercussions.Sounds.SoundList import soundlist_timbales
-from depthai_hand_tracker.demo import coord, close_depth_camera
-from depthai_hand_tracker.mouse import handmouse
-
-stop_thread = False
-
-debounce = True
-
-
-# import tk
-# from PIL import Image, ImageTk
 
 
 def create_timbales():
     win1 = Toplevel()  # must be Tk() instead of Toplevel(); TK() overwrites the Camera Picture
-    win1.attributes('-fullscreen', True)
-    # win1.geometry('1600x500')
+   # win1.attributes('-fullscreen', True)
+    win1.geometry('1600x500')
 
     timbales = Canvas(win1)
 
@@ -97,70 +86,9 @@ def create_timbales():
                                            command=back)
     button_close.place(relx=0.92, rely=0.95, relwidth=0.13, relheight=0.06, anchor=CENTER)
 
-    pygame.init()
-
-    def playback_timbales(channel, index):
-        pygame.mixer.Channel(channel).play(pygame.mixer.Sound(soundlist_timbales[index]))
-
-    def play_timbales():
-        channel = 1
-        end = 0
-        global stop_thread, debounce
-
-        while True:  # if the close button is pressed, the back function is called and set  stop_thread to True
-            if stop_thread:
-                print('thread gestoppt')
-                stop_thread = False
-                close_depth_camera(1)
-                thread = threading.Thread(target=handmouse)
-                thread.start()
-                win1.withdraw()
-                break
-            x1 = coord[0]
-            y1 = coord[1]
-            z1 = coord[2]
-            x2 = coord[3]
-            y2 = coord[4]
-            z2 = coord[5]
-
-            start = z1
-            delta = end - start
-
-            if 800 > x1 > 5 and y1 < 500:
-                timbales.itemconfig(hembro, fill='red')
-                if delta > 4 and not debounce:
-                    playback_timbales(channel, 0)
-                    channel += 1
-                    debounce = True
-            else:
-                timbales.itemconfig(hembro, fill='#d9d4d0')
-            if x1 > 800 and y1 < 500:
-                timbales.itemconfig(macho, fill='red')
-                if delta > 4 and not debounce:
-                    playback_timbales(channel, 1)
-                    channel += 1
-                    debounce = True
-            else:
-                timbales.itemconfig(macho, fill='#d9d4d0')
-
-            if y1 > 500:
-                timbales.itemconfig(cowbell, fill='red')
-                if delta > 4 and not debounce:
-                    playback_timbales(channel, 2)
-                    channel += 1
-                    debounce = True
-            else:
-                timbales.itemconfig(cowbell, fill='#d9d4d0')
-
-            if channel == 8:
-                channel = 1
-
-            if delta < 0:
-                debounce = False
-            time.sleep(0.01)
-            end = z1
-
-    thread_playtimb = threading.Thread(target=play_timbales)
+    thread_playtimb = threading.Thread(target=Soundevent,
+                                       args=('Timbales', win1, soundlist_timbales, timbales, None, hembro,
+                                             macho, cowbell))
     thread_playtimb.start()
 
     win1.mainloop()
@@ -168,5 +96,6 @@ def create_timbales():
 
 def back():
     print('Button gedrückt')
-    global stop_thread
-    stop_thread = True
+    stop = True
+    stop_thread(stop)
+
