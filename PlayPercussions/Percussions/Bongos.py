@@ -1,14 +1,8 @@
 import threading
-import time
-import tkinter
 from tkinter import *
-
 import customtkinter
-import pygame
+from PlayPercussions.Control.SoundControl import Soundevent, stop_thread
 from PlayPercussions.Sounds.SoundList import soundlist_bongos
-
-from depthai_hand_tracker.demo import coord, close_depth_camera
-from depthai_hand_tracker.mouse import handmouse
 
 stop_thread_bongo = False
 a = 0
@@ -19,7 +13,7 @@ def create_bongos():
     print('Hallo')
 
     win2 = Toplevel()
-   # win2.attributes('-fullscreen', True)
+    # win2.attributes('-fullscreen', True)
     win2.geometry('1700x800')
 
     bongos_high = Canvas(win2)
@@ -43,71 +37,9 @@ def create_bongos():
     button_close = customtkinter.CTkButton(master=win2, text='Close', fg_color='#cf5148', hover_color="red",
                                            command=back)
     button_close.place(relx=0.92, rely=0.95, relwidth=0.13, relheight=0.06, anchor=CENTER)
-    pygame.init()
 
-    def playback_bongo(channel, index):
-        pygame.mixer.Channel(channel).play(pygame.mixer.Sound(soundlist_bongos[index]))
-
-    def play_bongo():
-        debounce = True
-        channel = 1
-        global stop_thread_bongo
-
-        while True:  # if the close button is pressed, the back function is called and set  stop_thread to True
-            st = time.time()
-            global a, b
-
-            if stop_thread_bongo:
-                print('thread gestoppt')
-                stop_thread_bongo = False
-                close_depth_camera(1)
-                thread = threading.Thread(target=handmouse)
-                thread.start()
-
-                # win2.destroy()
-                win2.withdraw()
-                break
-            x1 = coord[0]
-            y1 = coord[1]
-            z1 = coord[2]
-            x2 = coord[3]
-            y2 = coord[4]
-            z2 = coord[5]
-
-            a = z1
-            delta = b - a
-            print(z2)
-
-            if 900 > x1 > 5:
-                bongos_low.itemconfig(bg_low, fill='red')
-                if delta > 4 and not debounce:
-                    playback_bongo(channel, 0)
-                    channel += 1
-                    if channel == 8:
-                        channel = 1
-                    debounce = True
-            else:
-                bongos_low.itemconfig(bg_low, fill='#e0cdbc')
-            if x1 > 900:
-                bongos_high.itemconfig(bg_high, fill='red')
-                if delta > 3 and not debounce:
-                    playback_bongo(channel, 1)
-                    channel += 1
-                    if channel == 8:
-                        channel = 1
-                    debounce = True
-            else:
-                bongos_high.itemconfig(bg_high, fill='#d9d4d0')
-
-            if delta < 0:
-                debounce = False
-            time.sleep(0.01)
-
-            b = z1
-
-            time.sleep(0.01)
-
-    thread_bongo = threading.Thread(target=play_bongo)
+    thread_bongo = threading.Thread(target=Soundevent, args=('Bongos', win2, soundlist_bongos, bongos_high, bongos_low,
+                                                             None, bg_low, bg_high))
     thread_bongo.start()
 
     win2.mainloop()
@@ -115,8 +47,10 @@ def create_bongos():
 
 def back():
     print('Button gedrückt')
-    global stop_thread_bongo
-    stop_thread_bongo = True
+    stop = True
+    stop_thread(stop)
+    # global stop_thread_bongo
+    # stop_thread_bongo = True
 
 
 # A useful function to create a circle. Just for trying out. Not used here!
