@@ -11,8 +11,8 @@ def create_bongos():
 
 
     win2 = Toplevel()
-    # win2.attributes('-fullscreen', True)
-    win2.geometry('1700x800')
+    win2.attributes('-fullscreen', True)
+    #win2.geometry('1700x800')
 
     bongos_high = Canvas(win2)
     bongos_high.place(relx=0.25, rely=0.5, relwidth=0.49, relheight=0.9, anchor=CENTER)

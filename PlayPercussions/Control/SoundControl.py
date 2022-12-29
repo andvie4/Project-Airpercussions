@@ -28,12 +28,22 @@ class Soundevent:
     def playback_percussion(self, channel, index):
         pygame.mixer.Channel(channel).play(pygame.mixer.Sound(self.soundlist[index]))
 
+    def playback_percussion2(self, channel, index):
+        pygame.mixer.Channel(channel).play(pygame.mixer.Sound(self.soundlist[index]))
+
+
+
     def process_coord(self):
 
-        b = 0
+        end = 0
+        end2 = 0
         debounce = True
+        debounce2 = True
         channel = 1
+        channel2=1
+
         while True:
+
             global stopthread
             if stopthread:
                 print('thread gestoppt')
@@ -50,52 +60,68 @@ class Soundevent:
             y2 = coord[4]
             z2 = coord[5]
 
-            a = z1
-            delta = b - a
-            end = 900
-            if self.name == 'Timbales':
-                end = 500
+            start = z1
+            start2 = z2
+            delta = end - start
+            delta2 = end2 - start2
+            print(delta2, 'delta 2')
 
-            if 900 > x1 > 5 and y1 < end:
+            y_end = 900
+            if self.name == 'Timbales':
+                y_end = 500
+
+            if 900 > x1 > 5 and y1 < y_end:
 
                 self.canvas1.itemconfig(self.shape2, fill='red')
                 if delta > 4 and not debounce:
                     self.playback_percussion(channel, 0)
                     channel += 1
-                    if channel == 8:
-                        channel = 1
                     debounce = True
             else:
                 self.canvas1.itemconfig(self.shape2, fill='#e0cdbc')
-            if x1 > 900 and y1 <end:
+
+            if x1 > 900 and y1 < y_end:
                 self.canvas2.itemconfig(self.shape1, fill='red')
                 if delta > 3 and not debounce:
                     self.playback_percussion(channel, 1)
                     channel += 1
-                    if channel == 8:
-                        channel = 1
                     debounce = True
+            elif x2 > 900 and y2 < y_end:
+                self.canvas2.itemconfig(self.shape1, fill='red')
+                if delta2 > 3 and not debounce2:
+                    self.playback_percussion2(channel2, 1)
+                    channel2 += 1
+                    debounce2 = True
             else:
                 self.canvas2.itemconfig(self.shape1, fill='#d9d4d0')
 
             if self.name == 'Timbales':
-                if y1 > end:
+                if y1 > y_end:
                     self.canvas1.itemconfig(self.shape3, fill='red')
                     if delta > 3 and not debounce:
                         self.playback_percussion(channel, 2)
                         channel += 1
-                        if channel == 8:
-                            channel = 1
                         debounce = True
+                elif y2 > y_end:
+                    self.canvas1.itemconfig(self.shape3, fill='red')
+                    if delta2 > 3 and not debounce:
+                        self.playback_percussion2(channel2, 2)
+                        channel2 += 1
+                        debounce2 = True
                 else:
                     self.canvas1.itemconfig(self.shape3, fill='#d9d4d0')
+            if channel == 8:
+                channel = 1
+            if channel2 == 8:
+                channel2=1
 
             if delta < 0:
                 debounce = False
+            if delta2 < 0:
+                debounce2 = False
             time.sleep(0.01)
-
-            b = z1
-
+            end = z1
+            end2 = z2
             time.sleep(0.01)
 
 

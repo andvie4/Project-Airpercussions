@@ -112,6 +112,7 @@ def coordinates(hands):
             x2 = hands[1].xyz[0]
             y2 = hands[1].xyz[1]
 
+
             calculatepixel(x1, y1, x2, y2)
 
 

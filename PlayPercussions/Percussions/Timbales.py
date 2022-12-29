@@ -8,8 +8,8 @@ from PlayPercussions.Sounds.SoundList import soundlist_timbales
 
 def create_timbales():
     win1 = Toplevel()  # must be Tk() instead of Toplevel(); TK() overwrites the Camera Picture
-   # win1.attributes('-fullscreen', True)
-    win1.geometry('1600x500')
+    win1.attributes('-fullscreen', True)
+    #win1.geometry('1600x500')
 
     timbales = Canvas(win1)
 
