@@ -40,6 +40,7 @@ class Soundevent:
         channel = 1
         channel2 = 1
         coord[6] = 10
+        start2 = 0
 
         while True:
 
@@ -59,13 +60,14 @@ class Soundevent:
             y2 = coord[4]
             z2 = coord[5]
             distance = coord[6]
+            delta2 = end2 - start2
+            print(distance)
 
             start = z1
             start2 = z2
             delta = end - start
-            delta2 = end2 - start2
 
-            if distance < 0.05:
+            if distance == 0:
                 stop = True
                 stop_thread(stop)
 
@@ -76,8 +78,7 @@ class Soundevent:
             if 900 > x1 > 5 and y1 < y_end:
 
                 self.canvas1.itemconfig(self.shape2, fill='red')
-                if 4 < delta < 15 and not debounce:
-                    print(delta)
+                if delta > 5 and not debounce:
                     self.playback_percussion(channel, 0)
                     channel += 1
                     debounce = True
@@ -86,13 +87,13 @@ class Soundevent:
 
             if x1 > 900 and y1 < y_end:
                 self.canvas2.itemconfig(self.shape1, fill='red')
-                if 4 < delta > 15 and not debounce:
+                if delta > 4 and not debounce:
                     self.playback_percussion(channel, 1)
                     channel += 1
                     debounce = True
             elif x2 > 900 and y2 < y_end:
                 self.canvas2.itemconfig(self.shape1, fill='red')
-                if 4 < delta2 < 15 and not debounce2:
+                if delta2 > 4 and not debounce2:
                     self.playback_percussion2(channel2, 1)
                     channel2 += 1
                     debounce2 = True
@@ -102,13 +103,13 @@ class Soundevent:
             if self.name == 'Timbales':
                 if y1 > y_end:
                     self.canvas1.itemconfig(self.shape3, fill='red')
-                    if 4 < delta < 15 and not debounce:
+                    if delta > 4 and not debounce:
                         self.playback_percussion(channel, 2)
                         channel += 1
                         debounce = True
                 elif y2 > y_end:
                     self.canvas1.itemconfig(self.shape3, fill='red')
-                    if 4 < delta2 < 15 and not debounce:
+                    if delta2 > 4 and not debounce:
                         self.playback_percussion2(channel2, 2)
                         channel2 += 1
                         debounce2 = True
@@ -119,14 +120,13 @@ class Soundevent:
             if channel2 == 8:
                 channel2 = 1
 
-            if delta < 0:
+            if delta < -2:
                 debounce = False
-            if delta2 < 0:
+            if delta2 < -2:
                 debounce2 = False
-            time.sleep(0.01)
+            time.sleep(0.005)
             end = z1
             end2 = z2
-            time.sleep(0.01)
 
 
 class SoundEventDeveloped:

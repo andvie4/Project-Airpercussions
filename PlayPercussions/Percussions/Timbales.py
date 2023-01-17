@@ -87,8 +87,8 @@ def create_timbales():
     button_close.place(relx=0.92, rely=0.95, relwidth=0.13, relheight=0.06, anchor=CENTER)
 
     thread_playtimb = threading.Thread(target=Soundevent,
-                                       args=('Timbales', win1, soundlist_timbales, timbales, None, hembro,
-                                             macho, cowbell))
+                                       args=('Timbales', win1, soundlist_timbales, timbales, None, macho,
+                                             hembro, cowbell))
     thread_playtimb.start()
 
     win1.mainloop()

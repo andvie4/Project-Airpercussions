@@ -43,8 +43,8 @@ soundlist_bongos = ['../PlayPercussions/Sounds/Bongos/Bongo_low.wav',
 soundlist_timpani = ['../PlayPercussions/Sounds/Timpani/C#_Timpani.wav',
                      '../PlayPercussions/Sounds/Timpani/G#_Timpani.wav']
 
-soundlist_timbales = ['../PlayPercussions/Sounds/Timbales/HighTimbales.wav',
-                      '../PlayPercussions/Sounds/Timbales/LowTimbales.wav',
+soundlist_timbales = ['../PlayPercussions/Sounds/Timbales/LowTimbales.wav',
+                      '../PlayPercussions/Sounds/Timbales/HighTimbales.wav',
                       '../PlayPercussions/Sounds/Timbales/Cowbell.wav']
 
 soundlist_steeldrum = ['../PlayPercussions/Sounds/Steeldrum/SteeldrumA4.wav',

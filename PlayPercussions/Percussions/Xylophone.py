@@ -21,8 +21,8 @@ rectangle_index1 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'
 rectangle_index2 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14']
 playback_index = 0
 stop_thread_xylo = False
-a = 0
-b = 0
+start = 0
+end = 0
 pygame.init()
 pygame.mixer.set_num_channels(30)
 
@@ -97,7 +97,7 @@ def play_xylo(win, xylophone, rectangles1, rectangles2):
     config = False
     channel =1
     while True:
-        global stop_thread_xylo, a, b
+        global stop_thread_xylo, end
         if stop_thread_xylo:
             print('thread gestoppt')
             stop_thread_xylo = False
@@ -113,8 +113,8 @@ def play_xylo(win, xylophone, rectangles1, rectangles2):
         x2 = coord[3]
         y2 = coord[4]
         z2 = coord[5]
-        a = z1
-        delta = b - a
+        start = z1
+        delta = end - start
 
         if y1 < 450:
             if config:
@@ -158,11 +158,11 @@ def play_xylo(win, xylophone, rectangles1, rectangles2):
             channel =1
         if delta < 0:
             debounce = False
-        time.sleep(0.01)
+        time.sleep(0.005)
 
-        b = z1
+        end = z1
 
-        time.sleep(0.01)
+
 
 
 def check_index1(x1):

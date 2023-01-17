@@ -149,7 +149,7 @@ def create_steeldrum():
 
             if delta < 0:
                 debounce = False
-            time.sleep(0.01)
+            time.sleep(0.005)
             end = z1
 
     thread_steeldrum = threading.Thread(target=play_steeldrum)
