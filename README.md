@@ -48,7 +48,7 @@ Playing is possible with one hand, and as it stands now,
 timpanis, bongos and timbales can be played with two hands.
 Drumset is not ready with the current state.
 To return to the instrument selection, press the tip 
-of the pointer finger and the tip of the thumb together.
+of the middle finger and the tip of the thumb together.
 
 ![](PoseImages/Pose_leave.png)
 

@@ -65,10 +65,9 @@ class Soundevent:
             delta = end - start
             delta2 = end2 - start2
 
-
             if distance < 0.05:
-              stop = True
-              stop_thread(stop)
+                stop = True
+                stop_thread(stop)
 
             y_end = 900
             if self.name == 'Timbales':
@@ -77,7 +76,7 @@ class Soundevent:
             if 900 > x1 > 5 and y1 < y_end:
 
                 self.canvas1.itemconfig(self.shape2, fill='red')
-                if 4 < delta < 15  and not debounce:
+                if 4 < delta < 15 and not debounce:
                     print(delta)
                     self.playback_percussion(channel, 0)
                     channel += 1
@@ -87,13 +86,13 @@ class Soundevent:
 
             if x1 > 900 and y1 < y_end:
                 self.canvas2.itemconfig(self.shape1, fill='red')
-                if delta > 4 and not debounce:
+                if 4 < delta > 15 and not debounce:
                     self.playback_percussion(channel, 1)
                     channel += 1
                     debounce = True
             elif x2 > 900 and y2 < y_end:
                 self.canvas2.itemconfig(self.shape1, fill='red')
-                if delta2 > 4 and not debounce2:
+                if 4 < delta2 < 15 and not debounce2:
                     self.playback_percussion2(channel2, 1)
                     channel2 += 1
                     debounce2 = True
@@ -103,13 +102,13 @@ class Soundevent:
             if self.name == 'Timbales':
                 if y1 > y_end:
                     self.canvas1.itemconfig(self.shape3, fill='red')
-                    if delta > 4 and not debounce:
+                    if 4 < delta < 15 and not debounce:
                         self.playback_percussion(channel, 2)
                         channel += 1
                         debounce = True
                 elif y2 > y_end:
                     self.canvas1.itemconfig(self.shape3, fill='red')
-                    if delta2 > 4 and not debounce:
+                    if 4 < delta2 < 15 and not debounce:
                         self.playback_percussion2(channel2, 2)
                         channel2 += 1
                         debounce2 = True
