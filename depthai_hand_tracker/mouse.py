@@ -163,7 +163,7 @@ config = {
 
     'pose_actions': [
 
-        {'name': 'MOVE', 'pose': 'ONE', 'callback': 'move', "trigger": "continuous",
+        {'name': 'MOVE', 'pose': ['ONE','TWO'], 'callback': 'move', "trigger": "continuous",
          "first_trigger_delay": 0.1, },
         {'name': 'CLICK', 'pose': 'FIST', 'callback': 'press_release', "trigger": "enter_leave",
          "first_trigger_delay": 0.1},

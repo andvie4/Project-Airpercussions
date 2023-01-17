@@ -31,8 +31,6 @@ class Soundevent:
     def playback_percussion2(self, channel, index):
         pygame.mixer.Channel(channel).play(pygame.mixer.Sound(self.soundlist[index]))
 
-
-
     def process_coord(self):
 
         end = 0
@@ -40,7 +38,8 @@ class Soundevent:
         debounce = True
         debounce2 = True
         channel = 1
-        channel2=1
+        channel2 = 1
+        coord[6] = 10
 
         while True:
 
@@ -59,12 +58,16 @@ class Soundevent:
             x2 = coord[3]
             y2 = coord[4]
             z2 = coord[5]
+            distance = coord[6]
 
             start = z1
             start2 = z2
             delta = end - start
             delta2 = end2 - start2
-            print(delta2, 'delta 2')
+
+            if distance < 0.2:
+                stop = True
+                stop_thread(stop)
 
             y_end = 900
             if self.name == 'Timbales':
@@ -113,7 +116,7 @@ class Soundevent:
             if channel == 8:
                 channel = 1
             if channel2 == 8:
-                channel2=1
+                channel2 = 1
 
             if delta < 0:
                 debounce = False
@@ -123,6 +126,10 @@ class Soundevent:
             end = z1
             end2 = z2
             time.sleep(0.01)
+
+
+class SoundEventDeveloped:
+    print()
 
 
 def stop_thread(stop):

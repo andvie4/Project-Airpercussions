@@ -294,6 +294,9 @@ class HandController:
         self.renderer.exit()
         self.tracker.exit()
 
+        #if self.use_renderer:
+           # self.renderer.exit()
+
 
 def closemouse(x):
     if x == 1:

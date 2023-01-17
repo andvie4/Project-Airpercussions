@@ -88,6 +88,7 @@ def coordinates(hands):
     if len(hands) == 0:
         for i in range(len(coord)):
             coord[i] = 0
+        coord[6]=10
 
     if len(hands) > 0:
         x1 = hands[0].xyz[0]
@@ -96,13 +97,13 @@ def coordinates(hands):
         y2 = 0
         z1= hands[0].xyz[2]
         #z1 = hands[0].norm_landmarks[5][2]
-        daumen = hands[0].norm_landmarks[4][0] * 100
-        zeigefinger = hands[0].norm_landmarks[8][0] * 100
+        thumb = hands[0].norm_landmarks[4][0] * 100
+        indexfinger = hands[0].norm_landmarks[8][0] * 100
         # z5= hands[0].xyz[2]
 
         calculatepixel(x1, y1, x2, y2)
         coord[2] = z1/10
-        coord[6] = daumen - zeigefinger
+        coord[6] = thumb - indexfinger
         # coord[2]=z5
         if len(hands) > 1:
             z2 = hands[1].xyz[2]

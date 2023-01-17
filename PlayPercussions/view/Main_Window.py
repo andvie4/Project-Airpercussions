@@ -5,7 +5,7 @@ from PlayPercussions.view.SelectWindow import selectwindow
 from depthai_hand_tracker.HandController import closemouse
 from pygame import mixer
 from PlayPercussions.Button import create_button
-import winsound
+#import winsound
 
 
 def gui():
@@ -57,14 +57,14 @@ def shut_down(root):
 
 
 def next_window():
-    winsound.PlaySound('BackgroundMusic/Buttonjingle.wav', winsound.SND_ASYNC)
+    #winsound.PlaySound('BackgroundMusic/Buttonjingle.wav', winsound.SND_ASYNC)
     backgroundmusic('stop', 0)
 
     selectwindow()
 
 
 def buttonpress():
-    winsound.PlaySound('BackgroundMusic/Buttonjingle.wav', winsound.SND_ASYNC)
+    #winsound.PlaySound('BackgroundMusic/Buttonjingle.wav', winsound.SND_ASYNC)
     backgroundmusic('stop', 0)
     selectwindow()
 
@@ -75,6 +75,8 @@ def backgroundmusic(command, volume):
     mixer.music.set_volume(volume)
     if command == 'play':
         mixer.music.play(-1)
+    if command == 'stop':
+        mixer.music.stop()
 
 
 def open_help():
@@ -86,4 +88,5 @@ def open_help():
 
 
 def open_about():
+    # to be done
     print()
