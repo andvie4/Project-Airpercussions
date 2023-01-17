@@ -24,8 +24,8 @@ mouse = Controller()
 
 def selectwindow():
     win = Toplevel()
-    # win.attributes('-fullscreen', True, )
-    win.geometry('1500x500')
+    win.attributes('-fullscreen', True, )
+    #win.geometry('1500x500')
     win.config(bg="white")
     screen_width = win.winfo_screenwidth()
     screen_height = win.winfo_screenheight()
