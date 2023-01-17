@@ -11,6 +11,7 @@ The Application runs only with a Luxonis OAK-D DephtAI
 stereo camera.
 ### Software
 Python IDE (eg. Pycharm)
+Python 3.10.0
 
 Required libraries and modules:
 see requirements.txt
@@ -25,7 +26,20 @@ Move mouse:
 ![](PoseImages/Pose_One.png)
 
 Mouse Click: Pose Fist
+
 ![](PoseImages/Pose_Fist.png)
+
+It is also possible to use the mouse.
 ## Play
-## Help
+Move the flat hand back and forth. When the hand marks 
+the instrument, it turns red. 
+Then simply make a relatively quick striking movement. 
+To return to the instrument selection, press the tip 
+of the pointer finger and the tip of the thumb together.
+
+![](PoseImages/Pose_leave.png)
+
+It is recommended to display the camera image 
+during the first attempts.
+
 
