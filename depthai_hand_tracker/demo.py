@@ -96,6 +96,7 @@ def coordinates(hands):
         x2 = 0
         y2 = 0
         z1= hands[0].xyz[2]
+
         #z1 = hands[0].norm_landmarks[5][2]
         thumb = hands[0].norm_landmarks[4][0] * 100
         middlefinger = hands[0].norm_landmarks[12][0] * 100

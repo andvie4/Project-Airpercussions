@@ -50,7 +50,7 @@ Drumset is not ready with the current state.
 To return to the instrument selection, press the tip 
 of the middle finger and the tip of the thumb together.
 
-![](PoseImages/Pose_leave.png)
+![](PoseImages/Pose_exit.jpg)
 
 ## Help
 It is recommended to display the camera image 

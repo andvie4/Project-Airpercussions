@@ -41,6 +41,7 @@ class Soundevent:
         channel2 = 1
         coord[6] = 10
         start2 = 0
+        distance2=0
 
         while True:
 
