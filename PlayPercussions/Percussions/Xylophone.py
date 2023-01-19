@@ -23,6 +23,7 @@ playback_index = 0
 stop_thread_xylo = False
 start = 0
 end = 0
+coord[6]=10
 pygame.init()
 pygame.mixer.set_num_channels(30)
 
@@ -30,7 +31,7 @@ pygame.mixer.set_num_channels(30)
 def create_xylophone():
     win3 = Toplevel()
     win3.attributes('-fullscreen', True)
-    #win3.geometry('1500x700')
+    # win3.geometry('1500x700')
 
     x1 = 40
     y1 = 1045
@@ -84,18 +85,18 @@ def create_xylophone():
     win3.mainloop()
 
 
-def playback_xylophon(channel,index):
+def playback_xylophon(channel, index):
     pygame.mixer.Channel(channel).play(pygame.mixer.Sound(soundlist_xylo[index]))
 
 
-def playback_accidental_notes(channel,index):
+def playback_accidental_notes(channel, index):
     pygame.mixer.Channel(channel).play(pygame.mixer.Sound(soundlist_xylo_accidental[index]))
 
 
 def play_xylo(win, xylophone, rectangles1, rectangles2):
     debounce = False
     config = False
-    channel =1
+    channel = 1
     while True:
         global stop_thread_xylo, end
         if stop_thread_xylo:
@@ -113,8 +114,12 @@ def play_xylo(win, xylophone, rectangles1, rectangles2):
         x2 = coord[3]
         y2 = coord[4]
         z2 = coord[5]
+        distance = coord[6]
         start = z1
         delta = end - start
+
+        if distance == 0:
+            stop_thread_xylo = True
 
         if y1 < 450:
             if config:
@@ -128,9 +133,9 @@ def play_xylo(win, xylophone, rectangles1, rectangles2):
             for number in range(22):
                 if idx == number:
                     xylophone.itemconfig(rectangles1[number], fill='red')
-                    if delta > 4 and not debounce:
-                        playback_xylophon(channel,idx)
-                        channel+=1
+                    if delta > 2 and not debounce:
+                        playback_xylophon(channel, idx)
+                        channel += 1
                         debounce = True
                     config = True
                 else:
@@ -147,22 +152,20 @@ def play_xylo(win, xylophone, rectangles1, rectangles2):
             for number in range(15):
                 if idx2 == number:
                     xylophone.itemconfig(rectangles2[number], fill='red')
-                    if delta > 4 and not debounce:
-                        playback_accidental_notes(channel,idx2)
-                        channel+=1
+                    if delta > 2 and not debounce:
+                        playback_accidental_notes(channel, idx2)
+                        channel += 1
                         debounce = True
                     config = True
                 else:
                     xylophone.itemconfig(rectangles2[number], fill='#754C14')
-        if channel==8:
-            channel =1
+        if channel == 8:
+            channel = 1
         if delta < 0:
             debounce = False
         time.sleep(0.005)
 
         end = z1
-
-
 
 
 def check_index1(x1):

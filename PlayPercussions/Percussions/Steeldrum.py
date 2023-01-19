@@ -13,7 +13,7 @@ from screeninfo import get_monitors
 note_name = ['A', 'E', 'H', 'F#/Ges', 'C#/Des', 'G#/As', 'D#/Es', 'B', 'F', 'C', 'G', 'D']
 polygon_index = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
 stop_thread_steeldrum = False
-
+coord[6]=10
 
 def calcirclepoints(angle, radius1, radius2):
     pointslist = []
@@ -34,8 +34,8 @@ def create_steeldrum():
     points = calcirclepoints(0, 250, 450)
 
     win0 = Toplevel()
-    win0.attributes('-fullscreen', True)
-    # win0.geometry('1500x800')
+    #win0.attributes('-fullscreen', True)
+    win0.geometry('1500x800')
 
     for monitor in get_monitors():
         width = monitor.width
@@ -127,8 +127,12 @@ def create_steeldrum():
             x2 = coord[3]
             y2 = coord[4]
             z2 = coord[5]
+            distance = coord[6]
             start = z1
             delta = end - start
+            print(distance)
+            if distance == 0:
+               stop_thread_steeldrum=True
 
             idx = check_index(x1)
             if idx is not None:

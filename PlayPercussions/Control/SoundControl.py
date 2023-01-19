@@ -41,7 +41,7 @@ class Soundevent:
         channel2 = 1
         coord[6] = 10
         start2 = 0
-        distance2=0
+        distance2 = 0
 
         while True:
 
@@ -61,12 +61,12 @@ class Soundevent:
             y2 = coord[4]
             z2 = coord[5]
             distance = coord[6]
-            delta2 = end2 - start2
-            print(distance)
 
             start = z1
             start2 = z2
             delta = end - start
+            delta2 = end2 - start2
+            print(z2)
 
             if distance == 0:
                 stop = True
