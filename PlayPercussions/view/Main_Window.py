@@ -12,8 +12,8 @@ def gui():
     backgroundmusic('play', 1)
     root = Tk()
     # set window size
-    #root.attributes('-fullscreen', True, )
-    root.geometry("1500x500")
+    root.attributes('-fullscreen', True, )
+    #root.geometry("1500x500")
     screen_width = root.winfo_screenwidth()  # winfo.screenwdth returns not always the real width
     screen_height = root.winfo_screenheight()
 

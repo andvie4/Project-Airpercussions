@@ -34,8 +34,8 @@ def create_steeldrum():
     points = calcirclepoints(0, 250, 450)
 
     win0 = Toplevel()
-    #win0.attributes('-fullscreen', True)
-    win0.geometry('1500x800')
+    win0.attributes('-fullscreen', True)
+    #win0.geometry('1500x800')
 
     for monitor in get_monitors():
         width = monitor.width
