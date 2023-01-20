@@ -22,7 +22,10 @@ see requirements.txt
 Run the app from main.py in the IDE
 ## Camera position
 The camera should be at least 50cm and 
-at most 70cm away from the hand.
+at most 90cm away from the hand.
+
+![](PoseImages/Position1.jpg)
+![](PoseImages/Position2.jpg)
 ## Navigate
 In the Main-window and Select-Window use this poses:
 
@@ -51,6 +54,9 @@ To return to the instrument selection, press the tip
 of the middle finger and the tip of the thumb together.
 
 ![](PoseImages/Pose_exit.jpg)
+
+## Demo
+
 
 ## Help
 It is recommended to display the camera image 
