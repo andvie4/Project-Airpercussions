@@ -9,9 +9,10 @@ from the examples
 https://github.com/geaxgx/depthai_hand_tracker
 
 ## Requirements
+### Screen resolution
+1920x1080
 ### Hardware
-The Application runs only with a Luxonis OAK-D DephtAI 
-stereo camera.
+The Application runs only with a Luxonis OAK-D-lite, OAK-D, OAK-1 camera.
 ### Software
 Python IDE (eg. Pycharm)
 Python 3.10.0
