@@ -58,6 +58,10 @@ of the middle finger and the tip of the thumb together.
 ## Demo
 
 
+https://user-images.githubusercontent.com/95248111/213652696-5c0d715c-8797-47bf-9749-323a40fbaefd.mp4
+
+
+
 ## Help
 It is recommended to display the camera image 
 during the first attempts.
